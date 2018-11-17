@@ -1,4 +1,6 @@
-div {
-  height: 1000px;
+#mapDiv {
+  margin-top: 0px;
+  height: 800px;
   width: 100%;
 }
+

@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 
 
-
 declare let L;
 
 @Component({
@@ -10,6 +9,7 @@ declare let L;
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
+  showFiller = false;
 
   constructor() {
   }
@@ -54,7 +54,6 @@ export class MapComponent implements OnInit {
         circle: true
       }
     }));
-
 
 
     map.on(L.Draw.Event.CREATED, function (event) {

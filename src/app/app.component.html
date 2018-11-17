@@ -1,7 +1,19 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
+
+<mat-toolbar class="topbar mat-m" color="primary">
+  <mat-icon class="example-icon">verified_user</mat-icon>
+  <button [matMenuTriggerFor]="menu" mat-button>Menu</button>
+  <span class="example-fill-remaining-space"></span>
+  <h1 style="text-align: center"> JSOC TAURI</h1>
+  <span class="example-fill-remaining-space"></span>
+</mat-toolbar>
+
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>Item 1</button>
+  <button mat-menu-item>Item 2</button>
+</mat-menu>
+
+<div>
   <app-map></app-map>
 </div>
