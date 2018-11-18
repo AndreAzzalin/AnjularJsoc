@@ -27,14 +27,17 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/assets/leaflet/leaflet.css",
               "src/assets/leaflet-sidebar.min.css",
-              "src/assets/leaflet.draw/Leaflet.draw.css"
+              "src/assets/leaflet.draw/Leaflet.draw.css",
+              "src/assets/leaflet-sidebar/leaflet-sidebar.min.css",
+              "src/theme.scss"
             ],
             "scripts": [
               "src/assets/leaflet/leaflet.js",
               "src/assets/proj4.js",
               "src/assets/Leaflet.MetricGrid.js",
               "src/assets/leaflet-sidebar.min.js",
-              "src/assets/Leaflet.draw.js"
+              "src/assets/Leaflet.draw.js",
+              "src/assets/leaflet-sidebar/leaflet-sidebar.min.js"
             ]
           },
           "configurations": {
