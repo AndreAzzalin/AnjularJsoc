@@ -31,6 +31,7 @@ export class MapComponent implements OnInit {
         const mapboxSat = L.tileLayer('https://api.mapbox.com/v4/adriano1.o8n8cj41/{z}/{x}/{y}.png?access_token=' + mapbox_token);
         const mapboxTerrain = L.tileLayer('https://api.mapbox.com/v4/adriano1.o8n9d1ca/{z}/{x}/{y}.png?access_token=' + mapbox_token);
         map.addLayer(tf);
+        //prova
 
         const drawnItems = L.featureGroup().addTo(map);
         map.addControl(new L.Control.Layers({
