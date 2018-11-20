@@ -1,50 +1,75 @@
 <div id="sidebar" class="leaflet-sidebar collapsed">
-    <!-- Nav tabs -->
-    <div class="leaflet-sidebar-tabs">
-        <ul role="tablist">
-            <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
-            <li><a href="#point" role="tab"><i class="fas fa-drafting-compass"></i></a></li>
-            <li><a href="#navigate" role="tab"><i class="fas fa-crosshairs"></i></a></li>
+  <!-- Nav tabs -->
+  <div class="leaflet-sidebar-tabs">
+    <ul role="tablist">
+      <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
+      <li><a href="#point" role="tab"><i class="fas fa-drafting-compass"></i></a></li>
+      <li><a href="#navigate" role="tab"><i class="fas fa-crosshairs"></i></a></li>
 
-            <li class="disabled"><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li>
-        </ul>
+      <li class="disabled"><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li>
+    </ul>
 
-        <ul role="tablist">
-            <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
-        </ul>
+    <ul role="tablist">
+      <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
+    </ul>
+  </div>
+
+  <!-- Tab panes -->
+  <div class="leaflet-sidebar-content">
+    <div class="leaflet-sidebar-pane" id="home">
+      <h1 class="leaflet-sidebar-header" style="background: #AFB42B;color: #222222">
+        {{op_name}}
+        <span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span>
+      </h1>
+      {{op_text}}
     </div>
 
-    <!-- Tab panes -->
-    <div class="leaflet-sidebar-content">
-        <div class="leaflet-sidebar-pane" id="home">
-            <h1 class="leaflet-sidebar-header" style="background: #AFB42B;color: #222222">
-                {{op_name}}
-                <span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span>
-            </h1>
-            {{op_text}}
-        </div>
-
-        <div class="leaflet-sidebar-pane" id="point">
-            <h1 class="leaflet-sidebar-header">Tactica Drawer<span class="leaflet-sidebar-close"><i
-                    class="fa fa-caret-right"></i></span></h1>
-            <p>add / delete / modify  custom NATO marker to te map  </p>
-        </div>
-        <div class="leaflet-sidebar-pane" id="navigate">
-            <h1 class="leaflet-sidebar-header">Navigate to tiles<span class="leaflet-sidebar-close"><i
-                    class="fa fa-caret-right"></i></span></h1>
-            <p>navigate to map, get center</p>
-        </div>
-
-        <div class="leaflet-sidebar-pane" id="messages">
-            <h1 class="leaflet-sidebar-header">Messages<span class="leaflet-sidebar-close"><i
-                    class="fa fa-caret-right"></i></span></h1>
-        </div>
-
-        <div class="leaflet-sidebar-pane" id="settings">
-            <h1 class="leaflet-sidebar-header">Settings<span class="leaflet-sidebar-close"><i
-                    class="fa fa-caret-right"></i></span></h1>
-        </div>
+    <div class="leaflet-sidebar-pane" id="point">
+      <h1 class="leaflet-sidebar-header">Tactica Drawer<span class="leaflet-sidebar-close"><i
+        class="fa fa-caret-right"></i></span></h1>
+      <p>add / delete / modify custom NATO marker to te map </p>
     </div>
+    <div class="leaflet-sidebar-pane container" id="navigate">
+      <h1 class="leaflet-sidebar-header">Navigate to tiles<span class="leaflet-sidebar-close"><i
+        class="fa fa-caret-right"></i></span></h1>
+      <p>navigate to map, get center</p>
+
+      <mat-card>
+        <h4 style="font-weight: bold;">Center map on:</h4>
+        <h4>{{getCenter()}}</h4>
+      </mat-card>
+
+      <span style="margin: 10px"></span>
+
+      <mat-card>
+        <div class="row">
+          <mat-form-field class="col-sm-4">
+            <input type="number" matInput #coordinateE placeholder="Nord" maxlength="6">
+            <mat-hint>{{coordinateE.value.length}} / 6</mat-hint>
+          </mat-form-field>
+          <mat-form-field class="col-sm-4">
+            <input type="number" matInput #coordinateN placeholder="Est" maxlength="7">
+            <mat-hint>{{coordinateN.value.length}} / 7</mat-hint>
+          </mat-form-field>
+          <div class=" col-sm-4">
+            <button style="text-align: center" mat-raised-button color="primary"
+                    (click)="centerTo(coordinateE.value,coordinateN.value,15)">center
+            </button>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+
+    <div class="leaflet-sidebar-pane" id="messages">
+      <h1 class="leaflet-sidebar-header">Messages<span class="leaflet-sidebar-close"><i
+        class="fa fa-caret-right"></i></span></h1>
+    </div>
+
+    <div class="leaflet-sidebar-pane" id="settings">
+      <h1 class="leaflet-sidebar-header">Settings<span class="leaflet-sidebar-close"><i
+        class="fa fa-caret-right"></i></span></h1>
+    </div>
+  </div>
 </div>
 
 
