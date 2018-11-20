@@ -27,7 +27,7 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/assets/leaflet/leaflet.css",
               "src/assets/leaflet-sidebar.min.css",
-              "src/assets/leaflet.draw/Leaflet.draw.css",
+              "src/assets/leaflet.draw/leaflet.draw.css",
               "src/assets/leaflet-sidebar/leaflet-sidebar.min.css",
               "src/theme.scss"
             ],
