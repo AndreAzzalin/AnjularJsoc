@@ -9,6 +9,7 @@ branches:
   - master
 
 before_script:
+- npm install firebase
 - npm install -g firebase-tools
 - npm install -g @angular/cli
 
@@ -16,6 +17,7 @@ script:
 - ng build --prod
 
 after_success:
+- npm install
 - firebase deploy --token $FIREBASE_TOKEN
 
 notifications:
