@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {ɵh23} from "@angular/material";
 
 
 declare let L;
@@ -9,8 +10,8 @@ declare let L;
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-  op_name = 'mission book';
-  op_text = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.';
+  op_name = 'Fazione 3: Unione Forze Speciali Tutela Globale (UFSTG)';
+  op_text = '';
   map;
 
   constructor() {
@@ -21,8 +22,9 @@ export class MapComponent implements OnInit {
 
     const mapbox_token = 'pk.eyJ1IjoiYWRyaWFubzEiLCJhIjoiY2loZjNldXQxMDA1eXUybTRjcHg1NmpvdSJ9._XP1KOZt9b6lerXf8tG6pw';
 
-
-    this.map = L.map('mapDiv').setView([44.988, 7.42], 15);
+    //44.856266, 7.358346
+    //44.988, 7.42
+    this.map = L.map('mapDiv').setView([44.856266, 7.358346], 17);
     const osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
 
     this.addGrid(this.map);
@@ -48,7 +50,8 @@ export class MapComponent implements OnInit {
         polygon: true,
         polyline: true,
         rectangle: true,
-        circle: true
+        circle: true,
+        marker:false
       }
     }));
 
@@ -62,6 +65,33 @@ export class MapComponent implements OnInit {
       .addTo(this.map)
     ;
 
+
+
+
+   this.addCustomIcon(44.856337,7.35798513581253,"/assets/Icons/start.png");
+   this.addCustomIcon(44.855354,7.357810602843642,"/assets/Icons/radio.png");
+   this.addCustomIcon(44.856861,7.359311839848585,"/assets/Icons/cratere.png");
+   this.addCustomIcon(44.857307,7.357830995918195,"/assets/Icons/americano.png");
+   this.addCustomIcon(44.857354,7.356677935097191,"/assets/Icons/urp.png");
+   this.addCustomIcon(44.858479,7.355405568261065,"/assets/Icons/ponte.png");
+   this.addCustomIcon(44.856935,7.361799,"/assets/Icons/macchine.png");
+
+
+
+  }
+
+  addCustomIcon(lat,long,iconPath){
+    var custom_icon = L.icon({
+      iconUrl: iconPath,
+      iconSize: [80, 45],
+      /*  iconAnchor: [22, 94],
+        popupAnchor: [-3, -76],
+        shadowSize: [68, 95],
+        shadowAnchor: [22, 94]*/
+      opacity: '0.5'
+    });
+
+    L.marker([lat, long], {draggable: true, icon: custom_icon}).addTo(this.map);
 
   }
 

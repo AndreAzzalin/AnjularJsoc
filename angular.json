@@ -28,7 +28,7 @@
               "src/assets/leaflet/leaflet.css",
               "src/assets/leaflet-sidebar.min.css",
               "src/assets/leaflet.draw/leaflet.draw.css",
-              "src/assets/leaflet-sidebar/leaflet-sidebar.min.css",
+
               "src/theme.scss"
             ],
             "scripts": [
@@ -36,8 +36,7 @@
               "src/assets/proj4.js",
               "src/assets/Leaflet.MetricGrid.js",
               "src/assets/leaflet-sidebar.min.js",
-              "src/assets/Leaflet.draw.js",
-              "src/assets/leaflet-sidebar/leaflet-sidebar.min.js"
+              "src/assets/Leaflet.draw.js"
             ]
           },
           "configurations": {
