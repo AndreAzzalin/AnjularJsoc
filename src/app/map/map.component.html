@@ -18,16 +18,50 @@
   <div class="leaflet-sidebar-content">
     <div class="leaflet-sidebar-pane" id="home">
       <h1 class="leaflet-sidebar-header" style="background: #AFB42B;color: #222222">
-        {{op_name}}
+        BRIEFING | {{op_name}}
         <span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span>
       </h1>
-      {{op_text}}
+      <span style="margin: 5px"></span>
+      <mat-card>
+        <h4>OBJ PRIMARIO</h4>
+        <ul>
+          <li> Impedire l'innesco dell'ordigno</li>
+          <li> Recupero e liberazione TECNICO.</li>
+          <li> Recupero del DETONATORE.</li>
+        </ul>
+        <p> Gli OBJ vanno esfiltrati all OUT, in campo ci saranno partigiani e civili da corrompere e sfruttarli.</p>
+        <h4>OBJ SECONDARIO</h4>
+        <ul>
+          <li> Sequestro di PANETTI di droga.</li>
+          <li> Sequestro di CASSE MUNIZIONI.</li>
+          <p> Da esfiltrare all OUT</p>
+        </ul>
+        <h4>DOTAZIONI</h4>
+        <p>Fascette x OBJ BANDIERA, Coordinate punti noti, modulo ingaggi</p>
+        <h4>RESPAWN</h4>
+        <ul>
+          <li> Campo base - 10' - fisso</li>
+          <li> Resp. Fisso - 10' - coo. Note</li>
+          <li> Resp. Mob. - 15' - spostabile</li>
+        </ul>
+        <h6>OBJ generali
+          <ul>
+            <li>TECNICO</li>
+            <li>DETONATORE</li>
+            <li>PANETTI</li>
+            <li>MUNIZIONI</li>
+            <li>SCHEDA INGAGGI</li>
+          </ul>
+        </h6>
+
+      </mat-card>
     </div>
 
     <div class="leaflet-sidebar-pane" id="point">
       <h1 class="leaflet-sidebar-header">Tactica Drawer<span class="leaflet-sidebar-close"><i
         class="fa fa-caret-right"></i></span></h1>
       <p>add / delete / modify custom NATO marker to te map </p>
+
     </div>
     <div class="leaflet-sidebar-pane container" id="navigate">
       <h1 class="leaflet-sidebar-header">Navigate to tiles<span class="leaflet-sidebar-close"><i
@@ -42,6 +76,8 @@
       <span style="margin: 10px"></span>
 
       <mat-card>
+        <h4>Latitudine Longitudine </h4>
+        <p>Google maps</p>
         <div class="row">
           <mat-form-field class="col-sm-4">
             <input type="number" matInput #coordinateE placeholder="Nord" maxlength="6">
