@@ -10,9 +10,10 @@ declare let L;
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-  op_name = 'Fazione 3: Unione Forze Speciali Tutela Globale (UFSTG)';
+  op_name = 'Fazione 3: UFSTG';
   op_text = '';
   map;
+  drawControl;
 
   constructor() {
 
@@ -24,7 +25,7 @@ export class MapComponent implements OnInit {
 
     //44.856266, 7.358346
     //44.988, 7.42
-    this.map = L.map('mapDiv').setView([44.856266, 7.358346], 17);
+    this.map = L.map('mapDiv').setView([44.857534, 7.355711], 17);
     const osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
 
     this.addGrid(this.map);
@@ -44,16 +45,22 @@ export class MapComponent implements OnInit {
       'Mapbox Terrain': mapboxTerrain
     }, {'drawlayer': drawnItems}, {position: 'topleft'}));
 
-
-    this.map.addControl(new L.Control.Draw({
+    var optionDraw = {
       draw: {
         polygon: true,
         polyline: true,
         rectangle: true,
         circle: true,
-        marker:false
+        marker: false
+      },
+      edit: {
+        featureGroup: drawnItems
       }
-    }));
+    }
+
+
+    this.drawControl = new L.Control.Draw(optionDraw);
+    this.map.addControl(this.drawControl);
 
 
     this.map.on(L.Draw.Event.CREATED, function (event) {
@@ -61,29 +68,37 @@ export class MapComponent implements OnInit {
       drawnItems.addLayer(layer);
     });
 
+
     L.control.sidebar({container: 'sidebar', position: 'right'})
       .addTo(this.map)
     ;
 
 
-
-
-   this.addCustomIcon(44.856337,7.35798513581253,"/assets/Icons/start.png");
-   this.addCustomIcon(44.855354,7.357810602843642,"/assets/Icons/radio.png");
-   this.addCustomIcon(44.856861,7.359311839848585,"/assets/Icons/cratere.png");
-   this.addCustomIcon(44.857307,7.357830995918195,"/assets/Icons/americano.png");
-   this.addCustomIcon(44.857354,7.356677935097191,"/assets/Icons/urp.png");
-   this.addCustomIcon(44.858479,7.355405568261065,"/assets/Icons/ponte.png");
-   this.addCustomIcon(44.856935,7.361799,"/assets/Icons/macchine.png");
-
+    this.addCustomIcon(44.856337, 7.35798513581253, "/assets/Icons/point.png", "start_3");
+    this.addCustomIcon(44.855354, 7.357810602843642, "/assets/Icons/point.png", "Viet");
+    this.addCustomIcon(44.856861, 7.359311839848585, "/assets/Icons/point.png", "cratere");
+    this.addCustomIcon(44.857307, 7.357830995918195, "/assets/Icons/point.png", "americano");
+    this.addCustomIcon(44.857354, 7.356677935097191, "/assets/Icons/point.png", "URP");
+    this.addCustomIcon(44.858479, 7.355405568261065, "/assets/Icons/point.png", "ponte");
+    this.addCustomIcon(44.860117, 7.352257936671143, "/assets/Icons/point.png", "IN/OUT");
 
 
   }
 
-  addCustomIcon(lat,long,iconPath){
+  setDrawingColor() {
+    this.drawControl.setDrawingOptions({
+      rectangle: {
+        shapeOptions: {
+          color: '#0000FF'
+        }
+      }
+    })
+  }
+
+  addCustomIcon(lat, long, iconPath, label) {
     var custom_icon = L.icon({
       iconUrl: iconPath,
-      iconSize: [80, 45],
+      iconSize: [20, 20],
       /*  iconAnchor: [22, 94],
         popupAnchor: [-3, -76],
         shadowSize: [68, 95],
@@ -91,8 +106,9 @@ export class MapComponent implements OnInit {
       opacity: '0.5'
     });
 
-    L.marker([lat, long], {draggable: true, icon: custom_icon}).addTo(this.map);
-
+    var marker = L.marker([lat, long], {draggable: false, icon: custom_icon});
+    marker.bindTooltip(label, {permanent: true, direction: 'bottom', offset: [0, 0]});
+    marker.addTo(this.map);
   }
 
   addGrid(map) {
