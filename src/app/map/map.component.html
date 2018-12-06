@@ -1,5 +1,5 @@
-<div id="sidebar" class="leaflet-sidebar collapsed">
-  <!-- Nav tabs -->
+<!--<div id="sidebar" class="leaflet-sidebar collapsed">
+
   <div class="leaflet-sidebar-tabs">
     <ul role="tablist">
       <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
@@ -14,7 +14,7 @@
     </ul>
   </div>
 
-  <!-- Tab panes -->
+
   <div class="leaflet-sidebar-content">
     <div class="leaflet-sidebar-pane" id="home">
       <h1 class="leaflet-sidebar-header" style="background: #AFB42B;color: #222222">
@@ -78,18 +78,7 @@
 
       <span style="margin: 10px"></span>
 
-      <mat-card>
-        <h4>Latitudine Longitudine </h4>
-        <p>Google maps</p>
-        <div class="row">
-          <mat-form-field class="col-sm-4">
-            <input type="number" matInput #coordinateE placeholder="Nord" maxlength="6">
-            <mat-hint>{{coordinateE.value.length}} / 6</mat-hint>
-          </mat-form-field>
-          <mat-form-field class="col-sm-4">
-            <input type="number" matInput #coordinateN placeholder="Est" maxlength="7">
-            <mat-hint>{{coordinateN.value.length}} / 7</mat-hint>
-          </mat-form-field>
+
           <div class=" col-sm-4">
             <button style="text-align: center" mat-raised-button color="primary"
                     (click)="centerTo(coordinateE.value,coordinateN.value,15)">center
@@ -109,10 +98,17 @@
         class="fa fa-caret-right"></i></span></h1>
     </div>
   </div>
+</div> -->
+
+
+<div style="margin: 0px;background-color: #212121" class="row">
+    <div class="col" id="mapDiv"></div>
+    <div class="col-3"><p> porcoddio</p>
+        <app-waypoint></app-waypoint>
+    </div>
 </div>
 
 
-<div id="mapDiv"></div>
 
 
 
