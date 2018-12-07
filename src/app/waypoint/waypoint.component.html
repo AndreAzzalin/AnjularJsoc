@@ -27,10 +27,10 @@
         <div class="row">
             <div class="col-4"><h5 style="text-align: center">UTM 32T</h5></div>
             <div class="col-4">
-                <input style="margin: 0 auto;padding: 0" class="form-control" placeholder="NORD" maxlength="6" #nord>
+                <input style="margin: 0 auto;padding: 0" class="form-control" placeholder="NORD" maxlength="6" #wpNord>
             </div>
             <div class="col-4">
-                <input class="form-control  " placeholder="EST" maxlength="7" #est>
+                <input class="form-control  " placeholder="EST" maxlength="7" #wpEst>
             </div>
         </div>
         <p></p>
@@ -39,7 +39,7 @@
                 <h5 style="text-align: center">LABEL</h5>
             </div>
             <div class="col-9">
-                <input type="text " class="form-control" placeholder="LABEL">
+                <input type="text " class="form-control" placeholder="LABEL" #wpLabel>
             </div>
         </div>
 
@@ -48,7 +48,7 @@
         <div class="row">
             <div class="col-6">
                 <button class="btn-lg btn-danger"
-                        (click)="addWaypoint()"> add waypoint
+                        (click)="addWaypoint(wpNord.value,wpEst.value,wpLabel.value)"> add waypoint
                 </button>
             </div>
             <div class="col-6">

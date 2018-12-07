@@ -17,7 +17,7 @@ export class MapService {
                 'type': 'Feature',
                 'properties': {
                     'id': 0,
-                    'name': ' porcodio 1'
+                    'name': ' wp 1'
                 },
                 'geometry': {
                     'type': 'Point',
@@ -31,7 +31,7 @@ export class MapService {
                 'type': 'Feature',
                 'properties': {
                     'id': 1,
-                    'name': ' porcodio 2'
+                    'name': ' wp 2'
                 },
                 'geometry': {
                     'type': 'Point',
@@ -45,7 +45,7 @@ export class MapService {
                 'type': 'Feature',
                 'properties': {
                     'id': 2,
-                    'name': ' porcodio 3',
+                    'name': ' wp 3',
                 },
                 'geometry': {
                     'type': 'Point',
@@ -83,10 +83,11 @@ export class MapService {
         return this.geoJsonTest;
     }
 
-
+    /*qua le cordinate le inserisco in utm */
     centerTo(nord, est, zoom) {
-        var coordUTM = L.utm({x: nord, y: est, zone: 32, band: 'T'});
-        var coordLatLng = coordUTM.latLng();
+        const coordUTM = L.utm({x: nord, y: est, zone: 32, band: 'T'});
+        const coordLatLng = coordUTM.latLng();
+
         this.map.flyTo(coordLatLng, zoom);
     }
 
@@ -156,7 +157,10 @@ export class MapService {
         map.addLayer(grid);
     }
 
-    addWaypoint(lat, long, iconPath, label) {
+    addWaypoint(nord, est, iconPath, label) {
+        const coordUTM = L.utm({x: nord, y: est, zone: 32, band: 'T'});
+        const coordLatLng = coordUTM.latLng();
+
         this.map.removeLayer(this.geoJsonLayer);
 
         var custom_icon = L.icon({
@@ -174,8 +178,8 @@ export class MapService {
             'geometry': {
                 'type': 'Point',
                 'coordinates': [
-                    long,
-                    lat
+                    coordLatLng.lng,
+                    coordLatLng.lat
                 ]
             }
         });

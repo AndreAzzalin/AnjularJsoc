@@ -24,8 +24,8 @@ export class WaypointComponent implements OnInit {
         this.mapService.loadGeoJson();
     }
 
-    addWaypoint() {
-        this.mapService.addWaypoint(44.860117, 7.352257936671143, '/assets/Icons/point.png', 'porcoddio 4');
+    addWaypoint(nord, est, label) {
+        this.mapService.addWaypoint(nord, est, '/assets/Icons/point.png', label);
     }
 
     getFeatures() {
