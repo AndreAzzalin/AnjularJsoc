@@ -29,17 +29,9 @@
 
 <mat-card>
     <!-- <p>{{x.features | json}}</p> -->
-    <p *ngFor="let l of x.features">{{l.properties.name}} | {{l.geometry.coordinates}}</p>
+
 
     <table class="table">
-        <thead>
-        <tr>
-
-            <th scope="col">Name</th>
-            <th scope="col">center to</th>
-            <th scope="col">Delete</th>
-        </tr>
-        </thead>
         <tbody>
         <tr *ngFor="let l of x.features">
             <td>{{l.properties.name}}</td>
@@ -47,7 +39,7 @@
                 <button class="btn-secondary" (click)="centerTo(l.geometry.coordinates[1],l.geometry.coordinates[0],18)"> center to</button>
             </td>
             <td>
-                <button class="btn-danger"> X </button>
+                <button class="btn-danger" (click)="removeWaypoint(l.properties.id)"> X </button>
             </td>
         </tr>
 

@@ -15,9 +15,13 @@ export class WaypointComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.mapService.testGeoJson();
+        this.mapService.loadGeoJson();
+    }
 
 
+    removeWaypoint(name) {
+        this.mapService.removeWaypoint(name);
+        this.mapService.loadGeoJson();
     }
 
 

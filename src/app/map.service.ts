@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import {forEach} from '@angular/router/src/utils/collection';
 
 declare let L;
 
@@ -7,6 +8,7 @@ declare let L;
 })
 export class MapService {
     private map;
+    private geoJsonLayer;
 
 
     private geoJsonTest = {
@@ -14,7 +16,10 @@ export class MapService {
         'features': [
             {
                 'type': 'Feature',
-                'properties': {'name': ' porcodio 1'},
+                'properties': {
+                    'id': 0,
+                    'name': ' porcodio 1'
+                },
                 'geometry': {
                     'type': 'Point',
                     'coordinates': [
@@ -26,6 +31,7 @@ export class MapService {
             {
                 'type': 'Feature',
                 'properties': {
+                    'id': 1,
                     'name': ' porcodio 2'
                 },
                 'geometry': {
@@ -39,8 +45,8 @@ export class MapService {
             {
                 'type': 'Feature',
                 'properties': {
+                    'id': 2,
                     'name': ' porcodio 3',
-                    'marker-color': '#0000ff'
                 },
                 'geometry': {
                     'type': 'Point',
@@ -53,22 +59,20 @@ export class MapService {
         ]
     };
 
-
-    testGeoJson() {
-
+//carico geoJson e li aggiungo all mappa
+    loadGeoJson() {
         var custom_icon = L.icon({
             iconUrl: '../assets/Icons/point.png',
             iconSize: [40, 40],
             opacity: '0.5'
         });
 
-        //label
         function onEachFeature(feature, layer) {
             layer.bindTooltip(feature.properties.name, {permanent: false, direction: 'bottom', offset: [0, 0]});
         }
 
         //leggo JSON aggiungo simbolo alla mappa
-        L.geoJSON(this.geoJsonTest, {
+        this.geoJsonLayer = L.geoJSON(this.geoJsonTest, {
             pointToLayer: function (feature, latlng) {
                 return L.marker(latlng, {icon: custom_icon});
             },
@@ -156,29 +160,47 @@ export class MapService {
     }
 
     addWaypoint(lat, long, iconPath, label) {
+        this.map.removeLayer(this.geoJsonLayer);
+
         var custom_icon = L.icon({
             iconUrl: iconPath,
             iconSize: [20, 20],
             opacity: '0.5'
         });
 
-        var marker = L.marker([lat, long], {draggable: false, icon: custom_icon});
-        marker.bindTooltip(label, {permanent: true, direction: 'bottom', offset: [0, 0]});
-        marker.addTo(this.map);
-
         this.geoJsonTest.features.push({
             'type': 'Feature',
             'properties': {
+                'id': 3,
                 'name': '' + label + ''
             },
             'geometry': {
                 'type': 'Point',
                 'coordinates': [
-                    7.355700731277466,
-                    44.85753438620626
+                    '' + long + '',
+                    '' + lat + ''
                 ]
             }
         });
+
+        this.loadGeoJson();
+    }
+
+    removeWaypoint(f: number) {
+
+        this.map.removeLayer(this.geoJsonLayer);
+
+        let i = 0;
+        this.geoJsonTest.features.forEach(x => {
+            console.log(x.properties.name);
+
+            if (x.properties.id === f) {
+                console.log(f + ' ' + x.properties.id + 'true');
+                this.geoJsonTest.features.splice(i, 1);
+            }
+            i++;
+        });
+
     }
 
 
