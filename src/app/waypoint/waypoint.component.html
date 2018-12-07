@@ -22,9 +22,37 @@
 </mat-card>
 
 <p></p>
-<mat-card>
-    <button class="btn-lg btn-danger" (click)="addWaypoint()"> add waypoint</button>
-</mat-card>
+<div class="card">
+    <div class="card-body">
+        <h3>ADD WAYPOINT</h3>
+        <p></p>
+        <div class="row">
+            <div class="col-4"><h5 style="text-align: center">UTM 32T</h5></div>
+            <div class="col-4">
+                <input style="margin: 0 auto;padding: 0" class="form-control" placeholder="NORD" maxlength="6" #nord>
+            </div>
+            <div class="col-4">
+                <input class="form-control  " placeholder="EST" maxlength="7" #est>
+            </div>
+        </div>
+
+        <label>LABEL</label>
+        <input type="text " class="form-control" placeholder="LABEL">
+        <p></p>
+        <div class="row">
+            <div class="col-6">
+                <button class="btn-lg btn-danger"
+                        (click)="addWaypoint()"> add waypoint
+                </button>
+            </div>
+            <div class="col-6">
+                <button class="btn-lg btn-danger"
+                        (click)="getCenter()"> Insert Center
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 <p></p>
 
 <mat-card>
@@ -36,10 +64,12 @@
         <tr *ngFor="let l of x.features">
             <td>{{l.properties.name}}</td>
             <td>
-                <button class="btn-secondary" (click)="centerTo(l.geometry.coordinates[1],l.geometry.coordinates[0],18)"> center to</button>
+                <button class="btn-secondary"
+                        (click)="centerTo(l.geometry.coordinates[1],l.geometry.coordinates[0],18)"> center to
+                </button>
             </td>
             <td>
-                <button class="btn-danger" (click)="removeWaypoint(l.properties.id)"> X </button>
+                <button class="btn-danger" (click)="removeWaypoint(l.properties.id)"> X</button>
             </td>
         </tr>
 
