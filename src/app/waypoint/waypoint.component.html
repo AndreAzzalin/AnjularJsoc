@@ -10,7 +10,7 @@
         </div>
     </div>
 
-    <button class="btn-lg btn-danger col-12" (click)="centerTo(gotoNord.value,gotoEst.value,15) "> goto</button>
+    <button class="btn-lg btn-danger col-12" (click)="centerToUTM(gotoNord.value,gotoEst.value,15) "> goto</button>
 </mat-card>
 
 <P></P>
@@ -70,7 +70,7 @@
                 <td>{{l.properties.name}}</td>
                 <td>
                     <button class="btn-secondary"
-                            (click)="centerTo(l.geometry.coordinates[1],l.geometry.coordinates[0],18)"> center to
+                            (click)="centerToLatLng(l.geometry.coordinates[1],l.geometry.coordinates[0],18)"> center to
                     </button>
                 </td>
                 <td>
@@ -81,4 +81,5 @@
         </table>
     </div>
 </div>
+
 

@@ -67,7 +67,7 @@ export class MapService {
         });
 
         function onEachFeature(feature, layer) {
-            layer.bindTooltip(feature.properties.name, {permanent: false, direction: 'bottom', offset: [0, 0]});
+            layer.bindTooltip(feature.properties.name, {permanent: true, direction: 'bottom', offset: [0, 10]});
         }
 
         this.geoJsonLayer = L.geoJSON(this.geoJsonTest, {
@@ -83,10 +83,21 @@ export class MapService {
         return this.geoJsonTest;
     }
 
+    centerToLatLng(lat, lng, zoom) {
+
+
+        this.map.flyTo([lat,lng], zoom);
+    }
+
+
     /*qua le cordinate le inserisco in utm */
-    centerTo(nord, est, zoom) {
+    centerToUTM(nord, est, zoom) {
         const coordUTM = L.utm({x: nord, y: est, zone: 32, band: 'T'});
         const coordLatLng = coordUTM.latLng();
+
+        console.log(coordLatLng.lat);
+        console.log(coordLatLng.lng);
+        console.log(coordLatLng);
 
         this.map.flyTo(coordLatLng, zoom);
     }
@@ -160,6 +171,11 @@ export class MapService {
     addWaypoint(nord, est, iconPath, label) {
         const coordUTM = L.utm({x: nord, y: est, zone: 32, band: 'T'});
         const coordLatLng = coordUTM.latLng();
+
+        console.log(coordLatLng.lat);
+        console.log(coordLatLng.lng);
+        console.log(coordLatLng);
+
 
         this.map.removeLayer(this.geoJsonLayer);
 
