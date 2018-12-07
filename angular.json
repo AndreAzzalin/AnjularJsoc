@@ -35,7 +35,8 @@
               "src/assets/proj4.js",
               "src/assets/Leaflet.MetricGrid.js",
               "src/assets/leaflet-sidebar.js",
-              "src/assets/Leaflet.draw.js"
+              "src/assets/Leaflet.draw.js",
+              "src/assets/L.LatLng.UTM.js"
             ]
           },
           "configurations": {

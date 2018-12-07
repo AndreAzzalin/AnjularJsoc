@@ -10,7 +10,6 @@ export class MapService {
     private map;
     private geoJsonLayer;
 
-
     private geoJsonTest = {
         'type': 'FeatureCollection',
         'features': [
@@ -71,7 +70,6 @@ export class MapService {
             layer.bindTooltip(feature.properties.name, {permanent: false, direction: 'bottom', offset: [0, 0]});
         }
 
-        //leggo JSON aggiungo simbolo alla mappa
         this.geoJsonLayer = L.geoJSON(this.geoJsonTest, {
             pointToLayer: function (feature, latlng) {
                 return L.marker(latlng, {icon: custom_icon});
@@ -86,13 +84,15 @@ export class MapService {
     }
 
 
-    centerTo(lat, lon, zoom) {
-        this.map.flyTo([lat, lon], zoom);
+    centerTo(nord, est, zoom) {
+        var coordUTM = L.utm({x: nord, y: est, zone: 32, band: 'T'});
+        var coordLatLng = coordUTM.latLng();
+        this.map.flyTo(coordLatLng, zoom);
     }
 
 
     getCenter() {
-        return this.map.getCenter();
+        return this.map.getCenter().utm().toString({decimals: 0, format: '{zone} {band} {x} {y}  '});
     }
 
 
@@ -113,9 +113,10 @@ export class MapService {
             'OpenStreetMap': osm,
             'Mapbox Sat': mapboxSat,
             'Mapbox Terrain': mapboxTerrain
-        }, {'drawlayer': drawnItems}, {position: 'topleft'}));
+        }, {'drawlayer': drawnItems}, {position: 'topright'}));
 
         const optionDraw = {
+            position: 'topright',
             draw: {
                 polygon: true,
                 polyline: true,
@@ -124,7 +125,7 @@ export class MapService {
                 marker: false
             },
             edit: {
-                featureGroup: drawnItems
+                featureGroup: drawnItems,
             }
         };
         const drawControl = new L.Control.Draw(optionDraw);
@@ -133,12 +134,8 @@ export class MapService {
         this.map.on(L.Draw.Event.CREATED, function (event) {
             const layer = event.layer;
             drawnItems.addLayer(layer);
-
-
         });
         this.addGrid(this.map);
-
-
     }
 
     addGrid(map) {
@@ -177,8 +174,8 @@ export class MapService {
             'geometry': {
                 'type': 'Point',
                 'coordinates': [
-                    '' + long + '',
-                    '' + lat + ''
+                    long,
+                    lat
                 ]
             }
         });
@@ -187,20 +184,15 @@ export class MapService {
     }
 
     removeWaypoint(f: number) {
-
         this.map.removeLayer(this.geoJsonLayer);
-
         let i = 0;
         this.geoJsonTest.features.forEach(x => {
-            console.log(x.properties.name);
-
             if (x.properties.id === f) {
                 console.log(f + ' ' + x.properties.id + 'true');
                 this.geoJsonTest.features.splice(i, 1);
             }
             i++;
         });
-
     }
 
 

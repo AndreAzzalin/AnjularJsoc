@@ -1,24 +1,22 @@
 <mat-card>
-    <h4>Coordinate</h4>
-    <p>latitudine longitudine</p>
+    <h4>Center map to:</h4>
     <div class="row">
-        <mat-form-field class="col-sm-4">
-            <input type="number" matInput #coordinateE placeholder="Nord" maxlength="6">
-            <mat-hint>{{coordinateE.value.length}} / 6</mat-hint>
-        </mat-form-field>
-        <mat-form-field class="col-sm-4">
-            <input type="number" matInput #coordinateN placeholder="Est" maxlength="7">
-            <mat-hint>{{coordinateN.value.length}} / 7</mat-hint>
-        </mat-form-field>
-        <button class="btn-lg btn-danger" (click)="centerTo(coordinateE.value,coordinateN.value,15) "> goto</button>
+        <div class="col-2"><h5 style="text-align: center">UTM 32T</h5></div>
+        <div class="col-4">
+            <input style="margin: 0 auto;padding: 0" class="form-control" placeholder="NORD" maxlength="6" #gotoNord>
+        </div>
+        <div class="col-4">
+            <input class="form-control  " placeholder="EST" maxlength="7" #gotoEst>
+        </div>
     </div>
 
+    <button class="btn-lg btn-danger col-12" (click)="centerTo(gotoNord.value,gotoEst.value,15) "> goto</button>
 </mat-card>
 
 <P></P>
 <mat-card>
-    <h4 style="font-weight: bold;">Center map on:</h4>
-    <h6>{{getCenter()}}</h6>
+    <h3 style="font-weight: bold;">Center map on:</h3>
+    <h4>{{getCenter()}}</h4>
 </mat-card>
 
 <p></p>
@@ -35,9 +33,17 @@
                 <input class="form-control  " placeholder="EST" maxlength="7" #est>
             </div>
         </div>
+        <p></p>
+        <div class="row">
+            <div class="col-3">
+                <h5 style="text-align: center">LABEL</h5>
+            </div>
+            <div class="col-9">
+                <input type="text " class="form-control" placeholder="LABEL">
+            </div>
+        </div>
 
-        <label>LABEL</label>
-        <input type="text " class="form-control" placeholder="LABEL">
+
         <p></p>
         <div class="row">
             <div class="col-6">
@@ -55,24 +61,24 @@
 </div>
 <p></p>
 
-<mat-card>
-    <!-- <p>{{x.features | json}}</p> -->
 
+<div class="card">
+    <div class="card-body">
+        <table class="table">
+            <tbody>
+            <tr *ngFor="let l of x.features">
+                <td>{{l.properties.name}}</td>
+                <td>
+                    <button class="btn-secondary"
+                            (click)="centerTo(l.geometry.coordinates[1],l.geometry.coordinates[0],18)"> center to
+                    </button>
+                </td>
+                <td>
+                    <button class="btn-danger" (click)="removeWaypoint(l.properties.id)"> X</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
-    <table class="table">
-        <tbody>
-        <tr *ngFor="let l of x.features">
-            <td>{{l.properties.name}}</td>
-            <td>
-                <button class="btn-secondary"
-                        (click)="centerTo(l.geometry.coordinates[1],l.geometry.coordinates[0],18)"> center to
-                </button>
-            </td>
-            <td>
-                <button class="btn-danger" (click)="removeWaypoint(l.properties.id)"> X</button>
-            </td>
-        </tr>
-
-        </tbody>
-    </table>
-</mat-card>
