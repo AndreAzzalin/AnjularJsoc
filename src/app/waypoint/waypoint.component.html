@@ -10,23 +10,47 @@
             <input type="number" matInput #coordinateN placeholder="Est" maxlength="7">
             <mat-hint>{{coordinateN.value.length}} / 7</mat-hint>
         </mat-form-field>
-        <button class="btn-lg btn-danger"  (click)="centerTo(coordinateE.value,coordinateN.value,15) "> goto</button>
+        <button class="btn-lg btn-danger" (click)="centerTo(coordinateE.value,coordinateN.value,15) "> goto</button>
     </div>
 
 </mat-card>
 
 <P></P>
 <mat-card>
-  <h4 style="font-weight: bold;">Center map on:</h4>
-  <h6>{{getCenter()}}</h6>
+    <h4 style="font-weight: bold;">Center map on:</h4>
+    <h6>{{getCenter()}}</h6>
 </mat-card>
 
 <p></p>
 <mat-card>
-  <button class="btn-lg btn-danger"  (click)="addWaypoint()"> goto</button>
+    <button class="btn-lg btn-danger" (click)="addWaypoint()"> add waypoint</button>
 </mat-card>
 <p></p>
 
 <mat-card>
-<p>{{x.features | json}}</p>
+    <!-- <p>{{x.features | json}}</p> -->
+    <p *ngFor="let l of x.features">{{l.properties.name}} | {{l.geometry.coordinates}}</p>
+
+    <table class="table">
+        <thead>
+        <tr>
+
+            <th scope="col">Name</th>
+            <th scope="col">center to</th>
+            <th scope="col">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let l of x.features">
+            <td>{{l.properties.name}}</td>
+            <td>
+                <button class="btn-secondary" (click)="centerTo(l.geometry.coordinates[1],l.geometry.coordinates[0],18)"> center to</button>
+            </td>
+            <td>
+                <button class="btn-danger"> X </button>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
 </mat-card>
