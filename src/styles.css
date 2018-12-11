@@ -1,18 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
-
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 
-.example-fill-remaining-space {
-  /* This fills the remaining space, by using flexbox.
-     Every toolbar row uses a flexbox row layout. */
+.logo-text {
   flex: 1 1 auto;
+  font-color: white;
 }
 
-body{
-  margin : 0px;
-  background: #333333;
+body {
+  margin: 0px;
 }
 
-
-
+td {
+  text-align: center
+}
 
