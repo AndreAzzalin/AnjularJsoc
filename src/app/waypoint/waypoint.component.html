@@ -1,0 +1,92 @@
+<div class="card bg-light">
+  <div class="card-body">
+    <h3 class="card-title">Center map on:</h3>
+    <h4>{{getCenter()}}</h4>
+  </div>
+</div>
+
+<p></p>
+
+<div class="card bg-light">
+  <div class="card-body">
+    <h3 class="card-title">Center map to:</h3>
+    <h5 class="card-title" style="text-align: center">UTM 32T</h5>
+    <div class="row">
+      <div class="col-sm-6">
+        <input style="margin: 0 auto;padding: 0" class="form-control" placeholder="NORD" maxlength="6" #gotoNord>
+      </div>
+
+      <div class="col-sm-6">
+        <input class="form-control  " placeholder="EST" maxlength="7" #gotoEst>
+      </div>
+    </div>
+    <p></p>
+    <button class="btn-lg btn-dark col-sm-12" (click)="centerToUTM(gotoNord.value,gotoEst.value,15) "> goto</button>
+  </div>
+</div>
+
+<P></P>
+
+<p></p>
+<div class="card">
+  <div class="card-body">
+    <h3 class="card-title">Add waypoint:</h3>
+    <p></p>
+    <div class="card-row row">
+      <div class=" col-4"><h5 style="text-align: center">UTM 32T</h5></div>
+      <div class="col-4">
+        <input style="margin: 0 auto;padding: 0" class="form-control" placeholder="NORD" maxlength="6" #wpNord>
+      </div>
+      <div class="col-4">
+        <input class="form-control  " placeholder="EST" maxlength="7" #wpEst>
+      </div>
+    </div>
+    <p></p>
+    <div class="row">
+      <div class="col-sm-4">
+        <h5 style="text-align: center">LABEL</h5>
+      </div>
+      <div class="col-sm-8">
+        <input type="text " class="form-control" placeholder="LABEL" #wpLabel>
+      </div>
+    </div>
+    <p></p>
+    <button class="btn-lg btn-dark col-sm-12"
+            (click)="addWaypoint(wpNord.value,wpEst.value,wpLabel.value)"> add waypoint
+    </button>
+
+  </div>
+</div>
+<p></p>
+
+
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title"> Inserire dropdown con info del punto </h4>
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Center to</th>
+        <th scope="col">Delete</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let l of x.features">
+        <td>{{l.properties.name}}</td>
+        <td>
+          <button class="btn btn-secondary"
+                  (click)="centerToLatLng(l.geometry.coordinates[1],l.geometry.coordinates[0],18)"><i
+            class="fas fa-location-arrow"></i>
+          </button>
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="removeWaypoint(l.properties.id)"> X</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
