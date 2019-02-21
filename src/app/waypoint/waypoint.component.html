@@ -59,7 +59,6 @@
 </div>
 <p></p>
 
-
 <div class="card">
   <div class="card-body">
     <h4 class="card-title"> Inserire dropdown con info del punto </h4>
@@ -81,6 +80,9 @@
           </button>
         </td>
         <td>
+          {{l.geometry.coordinates[1]}}, {{l.geometry.coordinates[0]}}
+        </td>
+        <td>
           <button class="btn btn-danger" (click)="removeWaypoint(l.properties.id)"> X</button>
         </td>
       </tr>
@@ -88,5 +90,6 @@
     </table>
   </div>
 </div>
+
 
 

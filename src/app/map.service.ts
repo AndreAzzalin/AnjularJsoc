@@ -10,58 +10,217 @@ export class MapService {
     private map;
     private geoJsonLayer;
 
-    private geoJsonTest = {
-        'type': 'FeatureCollection',
-        'features': [
-            {
-                'type': 'Feature',
-                'properties': {
-                    'id': 0,
-                    'name': ' wp 1'
-                },
-                'geometry': {
-                    'type': 'Point',
-                    'coordinates': [
-                        7.358157634735107,
-                        44.85518430893129
-                    ]
-                }
-            },
-            {
-                'type': 'Feature',
-                'properties': {
-                    'id': 1,
-                    'name': ' wp 2'
-                },
-                'geometry': {
-                    'type': 'Point',
-                    'coordinates': [
-                        7.3568809032440186,
-                        44.85646203274499
-                    ]
-                }
-            },
-            {
-                'type': 'Feature',
-                'properties': {
-                    'id': 2,
-                    'name': ' wp 3',
-                },
-                'geometry': {
-                    'type': 'Point',
-                    'coordinates': [
-                        7.355700731277466,
-                        44.85753438620626
-                    ]
-                }
-            }
-        ]
-    };
+  private geoJsonTest = {
+    'type': 'FeatureCollection',
+    'features': [
+      {
+        'type': 'Feature',
+        'properties': {
+          'id': 0,
+          'name': 'HQ'
+        },
+        'geometry': {
+          'type': 'Point',
+          'coordinates': [
+            9.01231818851834,
+            44.575719084161044
+          ]
+        }
+      },
+      {
+        'type': 'Feature',
+        'properties': {
+          'id': 1,
+          'name': 'OBJ_1'
+        },
+        'geometry': {
+          'type': 'Point',
+          'coordinates': [
+            9.004433696257546,
+            44.577772254513214
+          ]
+        }
+      },
+      {
+        'type': 'Feature',
+        'properties': {
+          'id': 2,
+          'name': 'OBJ_2',
+        },
+        'geometry': {
+          'type': 'Point',
+          'coordinates': [
+            8.994193114032251,
+            44.58033793208094
+          ]
+        }
+      },
+      {
+        'type': 'Feature',
+        'properties': {
+          'id': 3,
+          'name': 'OBJ_3',
+        },
+        'geometry': {
+          'type': 'Point',
+          'coordinates': [
+            8.991685942033715,
+            44.58392980992787
+          ]
+        }
+      },
+      {
+        'type': 'Feature',
+        'properties': {
+          'id': 4,
+          'name': 'OBJ_4',
+        },
+        'geometry': {
+          'type': 'Point',
+          'coordinates': [
+            9.017304783755687,
+            44.57188332914383
+          ]
+        }
+      },
+      {
+        'type': 'Feature',
+        'properties': {
+          'id': 5,
+          'name': 'OBJ_5',
+        },
+        'geometry': {
+          'type': 'Point',
+          'coordinates': [
+            8.992329170894548,
+            44.57800615045223
+          ]
+        }
+      },
+      {
+        'type': 'Feature',
+        'properties': {
+          'id': 6,
+          'name': 'OBJ_6',
+        },
+        'geometry': {
+          'type': 'Point',
+          'coordinates': [
+            9.002657893010348,
+            44.582039538293834
+
+          ]
+        }
+      }, {
+        'type': 'Feature',
+        'properties': {
+          'id': 7,
+          'name': 'WP_1',
+        },
+        'geometry': {
+          'type': 'Point',
+          'coordinates': [
+            9,
+            44.58094125329124
+
+          ]
+        }
+      },{
+        'type': 'Feature',
+        'properties': {
+          'id':8,
+          'name': 'WP_2',
+        },
+        'geometry': {
+          'type': 'Point',
+          'coordinates': [
+            9.014105828808301,
+            44.57203681330511
+
+          ]
+        }
+      },
+      {
+        'type': 'Feature',
+        'properties': {
+          'id':9,
+          'name': 'WP_3',
+        },
+        'geometry': {
+          'type': 'Point',
+          'coordinates': [
+            8.99203961784107,
+            44.57690781393056
+
+          ]
+        }
+      },   {
+        'type': 'Feature',
+        'properties': {
+          'id':10,
+          'name': 'WP_4',
+        },
+        'geometry': {
+          'type': 'Point',
+          'coordinates': [
+            9.010503631358713,
+            44.57107392261764
+
+          ]
+        }
+      }, {
+        'type': 'Feature',
+        'properties': {
+          'id':11,
+          'name': 'WP_5',
+        },
+        'geometry': {
+          'type': 'Point',
+          'coordinates': [
+            9.00746859026383,
+            44.57248757038551
+
+          ]
+        }
+      },{
+        'type': 'Feature',
+        'properties': {
+          'id':12,
+          'name': 'WP_6',
+        },
+        'geometry': {
+          'type': 'Point',
+          'coordinates': [
+            9.007003406300512,
+            44.57928456168757
+
+          ]
+        }
+      },{
+        'type': 'Feature',
+        'properties': {
+          'id':13,
+          'name': 'WP_7',
+        },
+        'geometry': {
+          'type': 'Point',
+          'coordinates': [
+            8.996951991367823,
+            44.57475642961811
+
+          ]
+        }
+      }
+
+
+
+    ]
+  };
 
 //carico geoJson e li aggiungo all mappa
     loadGeoJson() {
         var custom_icon = L.icon({
-            iconUrl: '../assets/Icons/point.png',
+            iconUrl: '../assets/Icons/crosshairs-solid.svg',
             iconSize: [40, 40],
             opacity: '0.5'
         });
@@ -120,7 +279,7 @@ export class MapService {
         this.map.addLayer(tf);
 
         const drawnItems = L.featureGroup().addTo(this.map);
-        this.map.addControl(new L.Control.Layers({
+      this.map.addControl(new L.Control.Layers({
             'TF Outdoors': tf,
             'OpenStreetMap': osm,
             'Mapbox Sat': mapboxSat,
