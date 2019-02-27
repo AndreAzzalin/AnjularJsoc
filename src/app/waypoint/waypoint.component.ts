@@ -42,4 +42,8 @@ export class WaypointComponent implements OnInit {
     centerToLatLng(lat, long, zoom) {
         this.mapService.centerToLatLng(lat, long, zoom);
     }
+
+    getUtm(lat,lng,l){
+      return this.mapService.latLongToUtm(lat,lng,l);
+    }
 }

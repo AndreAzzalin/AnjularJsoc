@@ -80,7 +80,8 @@
           </button>
         </td>
         <td>
-          {{l.geometry.coordinates[1]}}, {{l.geometry.coordinates[0]}}
+        <!--  {{l.geometry.coordinates[1]}}, {{l.geometry.coordinates[0]}}-->
+          {{getUtm(l.geometry.coordinates[1], l.geometry.coordinates[0],l)}}
         </td>
         <td>
           <button class="btn btn-danger" (click)="removeWaypoint(l.properties.id)"> X</button>
