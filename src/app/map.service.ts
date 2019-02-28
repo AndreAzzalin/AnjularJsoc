@@ -17,13 +17,14 @@ export class MapService {
         'type': 'Feature',
         'properties': {
           'id': 0,
-          'name': 'HQ'
+          'name': 'HQ',
+          'type': 'HQ'
         },
         'geometry': {
           'type': 'Point',
           'coordinates': [
-            9.01231818851834,
-            44.575719084161044
+            9.004798981994636,
+            44.57788927348875
           ]
         }
       },
@@ -32,13 +33,14 @@ export class MapService {
         'properties': {
           'id': 1,
           //'name': 'OBJ_1'
-          'name': 'Tana del lupo'
+          'name': 'Tana del lupo',
+          'type': 'OBJ'
         },
         'geometry': {
           'type': 'Point',
           'coordinates': [
-            9.004433696257546,
-            44.577772254513214
+            8.992051240750655,
+            44.58404686954846
           ]
         }
       },
@@ -46,14 +48,16 @@ export class MapService {
         'type': 'Feature',
         'properties': {
           'id': 2,
-        // 'name': 'OBJ_2',
+          // 'name': 'OBJ_2',
           'name': 'Dr. Ludvig ',
+
+          'type': 'OBJ'
         },
         'geometry': {
           'type': 'Point',
           'coordinates': [
-            8.994193114032251,
-            44.58033793208094
+            9.01767005842491,
+            44.572000307077076
           ]
         }
       },
@@ -63,12 +67,13 @@ export class MapService {
           'id': 3,
           //'name': 'OBJ_3',
           'name': 'Comunicazioni',
+          'type': 'OBJ'
         },
         'geometry': {
           'type': 'Point',
           'coordinates': [
-            8.991685942033715,
-            44.58392980992787
+            9.011021256817028,
+            44.57774480102431
           ]
         }
       },
@@ -76,14 +81,15 @@ export class MapService {
         'type': 'Feature',
         'properties': {
           'id': 4,
-        //  'name': 'OBJ_4',
+          //  'name': 'OBJ_4',
           'name': 'Macchina del tempo',
+          'type': 'OBJ'
         },
         'geometry': {
           'type': 'Point',
           'coordinates': [
-            9.017304783755687,
-            44.57188332914383
+            9.000365296686386,
+            44.581058286381726
           ]
         }
       },
@@ -91,8 +97,8 @@ export class MapService {
         'type': 'Feature',
         'properties': {
           'id': 5,
-        //  'name': 'OBJ_5',
-          'name': 'Ospedale da campo',
+          //  'name': 'OBJ_5',
+          'name': 'Ospedale da campo', 'type': 'OBJ'
         },
         'geometry': {
           'type': 'Point',
@@ -107,13 +113,13 @@ export class MapService {
         'properties': {
           'id': 6,
           //'name': 'OBJ_6',
-          'name': 'Testa di ponte',
+          'name': 'Testa di ponte', 'type': 'OBJ'
         },
         'geometry': {
           'type': 'Point',
           'coordinates': [
-            9.002657893010348,
-            44.582039538293834
+            9.014471098028565,
+            44.57215380146668
 
           ]
         }
@@ -121,13 +127,13 @@ export class MapService {
         'type': 'Feature',
         'properties': {
           'id': 7,
-          'name': 'WP_1',
+          'name': 'WP_1', 'type': 'WP'
         },
         'geometry': {
           'type': 'Point',
           'coordinates': [
-            9,
-            44.58094125329124
+            8.992404873303661,
+            44.57702487256149
 
           ]
         }
@@ -135,7 +141,7 @@ export class MapService {
         'type': 'Feature',
         'properties': {
           'id': 8,
-          'name': 'WP_2',
+          'name': 'WP_2', 'type': 'WP'
         },
         'geometry': {
           'type': 'Point',
@@ -150,7 +156,7 @@ export class MapService {
         'type': 'Feature',
         'properties': {
           'id': 9,
-          'name': 'WP_3',
+          'name': 'WP_3', 'type': 'WP'
         },
         'geometry': {
           'type': 'Point',
@@ -164,7 +170,7 @@ export class MapService {
         'type': 'Feature',
         'properties': {
           'id': 10,
-          'name': 'WP_4',
+          'name': 'WP_4', 'type': 'WP'
         },
         'geometry': {
           'type': 'Point',
@@ -178,7 +184,7 @@ export class MapService {
         'type': 'Feature',
         'properties': {
           'id': 11,
-          'name': 'WP_5',
+          'name': 'WP_5', 'type': 'WP'
         },
         'geometry': {
           'type': 'Point',
@@ -192,7 +198,7 @@ export class MapService {
         'type': 'Feature',
         'properties': {
           'id': 12,
-          'name': 'WP_6',
+          'name': 'WP_6', 'type': 'WP'
         },
         'geometry': {
           'type': 'Point',
@@ -206,26 +212,54 @@ export class MapService {
         'type': 'Feature',
         'properties': {
           'id': 13,
-          'name': 'WP_7',
+          'name': 'WP_7', 'type': 'WP'
         },
         'geometry': {
           'type': 'Point',
           'coordinates': [
             8.996951991367823,
             44.57475642961811
-
+          ]
+        }
+      }, {
+        'type': 'Feature',
+        'properties': {
+          'id': 14,
+          'name': 'Pericolo',
+          'type': 'BAN'
+        },
+        'geometry': {
+          'type': 'Point',
+          'coordinates': [
+            8.996951991367823,
+            44.58475642961811
           ]
         }
       }
-
-
     ]
   };
 
 //carico geoJson e li aggiungo all mappa
   loadGeoJson () {
-    var custom_icon = L.icon({
+    var icon_OBJ = L.icon({
       iconUrl: '../assets/Icons/crosshairs-solid.svg',
+      iconSize: [40, 40],
+      opacity: '0.5'
+    });
+
+    var icon_WP = L.icon({
+      iconUrl: '../assets/Icons/flag.svg',
+      iconSize: [40, 40],
+      opacity: '0.5'
+    });
+    var icon_HQ = L.icon({
+      iconUrl: '../assets/Icons/home-solid.svg',
+      iconSize: [40, 40],
+      opacity: '0.5'
+    });
+
+    var icon_BAN = L.icon({
+      iconUrl: '../assets/Icons/ban-solid.svg',
       iconSize: [40, 40],
       opacity: '0.5'
     });
@@ -236,7 +270,18 @@ export class MapService {
 
     this.geoJsonLayer = L.geoJSON(this.geoJsonTest, {
       pointToLayer: function (feature, latlng) {
-        return L.marker(latlng, {icon: custom_icon});
+        switch (feature.properties["type"]) {
+          case "WP":
+            return L.marker(latlng, {icon: icon_WP});
+          case"OBJ":
+            return L.marker(latlng, {icon: icon_OBJ});
+          case"HQ":
+            return L.marker(latlng, {icon: icon_HQ});
+          case"BAN":
+            return L.marker(latlng, {icon: icon_BAN});
+        }
+
+
       },
       onEachFeature: onEachFeature
     }).addTo(this.map);
@@ -248,8 +293,6 @@ export class MapService {
   }
 
   centerToLatLng (lat, lng, zoom) {
-
-
     this.map.flyTo([lat, lng], zoom);
   }
 
@@ -279,7 +322,8 @@ export class MapService {
     const mapboxSat = L.tileLayer('https://api.mapbox.com/v4/adriano1.o8n8cj41/{z}/{x}/{y}.png?access_token=' + mapbox_token);
     const mapboxTerrain = L.tileLayer('https://api.mapbox.com/v4/adriano1.o8n9d1ca/{z}/{x}/{y}.png?access_token=' + mapbox_token);
 
-    this.map = L.map('mapDiv').setView([44.857534, 7.355711], 17);
+    this.map = L.map('mapDiv').setView([44.57107392261764, 9.010503631358713], 15);
+
 
     this.map.addLayer(tf);
 
@@ -311,7 +355,10 @@ export class MapService {
       const layer = event.layer;
       drawnItems.addLayer(layer);
     });
+
     this.addGrid(this.map);
+
+
   }
 
   addGrid (map) {
@@ -329,7 +376,7 @@ export class MapService {
       showAxisLabels: [100, 1000],
       showAxis100km: true
     });
-    // map.addLayer(grid);
+    map.addLayer(grid);
   }
 
   addWaypoint (nord, est, iconPath, label) {
@@ -353,7 +400,8 @@ export class MapService {
       'type': 'Feature',
       'properties': {
         'id': 3,
-        'name': '' + label + ''
+        'name': '' + label + '',
+        'type': 'WP'
       },
       'geometry': {
         'type': 'Point',

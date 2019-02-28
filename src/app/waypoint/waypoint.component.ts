@@ -24,8 +24,11 @@ export class WaypointComponent implements OnInit {
         this.mapService.loadGeoJson();
     }
 
-    addWaypoint(nord, est, label) {
+    addWaypoint(nord, est,type, label) {
+
         this.mapService.addWaypoint(nord, est, '/assets/Icons/point.png', label);
+
+
     }
 
     getFeatures() {
