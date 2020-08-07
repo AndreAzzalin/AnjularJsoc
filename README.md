@@ -1,6 +1,6 @@
 # AnjularJsoc
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+Map Generator con griglia UTM Tauri Airsoft
 
 ## Development server
 
